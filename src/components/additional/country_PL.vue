@@ -166,8 +166,18 @@ export default {
         list-style: none;
 
         @media screen and (max-width:1024px){
-            overflow: hidden;
-            overflow-x: auto;
+            padding-top: 44px;
+
+            &:before{
+                content: '- Kliknij na nazwę aby sortować- ';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                padding: 8px;
+                text-align: center;
+                color: $muted;
+            }
         }
     }
 
@@ -247,6 +257,7 @@ export default {
                     &.active{
                         width: 100%;
                         order: -1;
+                        border:1px solid $muted;
                     }
                 }
             }

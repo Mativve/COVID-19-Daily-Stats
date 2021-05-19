@@ -9,6 +9,11 @@ export default {
       type:Array
     }
   },
+  data(){
+    return{
+      stats: []
+    }
+  },
   methods:{
     render(){
       const dateOptions = {
@@ -17,15 +22,15 @@ export default {
           day: "numeric"
       };
 
-      const dates = this.chartData.map(d => {
+      const dates = this.stats.map(d => {
         let date = new Date(d.last_update);
         return date.toLocaleDateString("pl-PL", dateOptions);
       }).reverse();
       
-      const cases = this.chartData.map(c => c.cases).reverse();
-      const deaths = this.chartData.map(d => d.deaths).reverse();
-      const recovered = this.chartData.map(r => r.recovered).reverse();
-      const vaccined = this.chartData.map(v => (v.vaccine) ? v.vaccine : 0).reverse();
+      const cases = this.stats.map(c => c.cases).reverse();
+      const deaths = this.stats.map(d => d.deaths).reverse();
+      const recovered = this.stats.map(r => r.recovered).reverse();
+      const vaccined = this.stats.map(v => (v.vaccine) ? v.vaccine : 0).reverse();
 
       this.renderChart({
         labels: dates,
@@ -102,7 +107,13 @@ export default {
       });
     }
   },
+  watch:{
+    chartData(){
+      this.render();
+    }
+  },
   mounted(){
+    this.stats = this.chartData;
     this.render();
   }
 }

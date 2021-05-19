@@ -35,6 +35,10 @@ body{
             background-color: darken($bg-dark, 3%);
             box-shadow: none;
 
+            &:after{
+                border-top-color: $bg-dark;
+            }
+
             &-item{
                 &-title{
                     color: $text-dark;
@@ -155,9 +159,16 @@ body{
 
         @media screen and (max-width:640px){
             flex-wrap: wrap;
+            flex-direction: column;
 
             .logo, .main-menu{
-                width: 50%;
+                width: 100%;
+                text-align: center;
+                justify-content: center
+            }
+
+            .logo{
+                margin-bottom: 16px;
             }
         }
     }
