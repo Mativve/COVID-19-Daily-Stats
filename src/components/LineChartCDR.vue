@@ -25,12 +25,12 @@ export default {
       const dates = this.stats.map(d => {
         let date = new Date(d.last_update);
         return date.toLocaleDateString("pl-PL", dateOptions);
-      }).reverse();
+      });
       
-      const cases = this.stats.map(c => c.cases).reverse();
-      const deaths = this.stats.map(d => d.deaths).reverse();
-      const recovered = this.stats.map(r => r.recovered).reverse();
-      const vaccined = this.stats.map(v => (v.vaccine) ? v.vaccine : 0).reverse();
+      const cases = this.stats.map(c => c.cases);
+      const deaths = this.stats.map(d => d.deaths);
+      const recovered = this.stats.map(r => r.recovered);
+      const vaccined = this.stats.map(v => (v.vaccine) ? v.vaccine : 0);
 
       this.renderChart({
         labels: dates,

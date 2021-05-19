@@ -24,8 +24,6 @@ export default defineComponent({
           day: "numeric"
       };
 
-      this.stats = this.stats.reverse();
-
       this.stats = this.stats.slice(this.stats.length-30);
 
       let dates = this.stats.map(d => {
