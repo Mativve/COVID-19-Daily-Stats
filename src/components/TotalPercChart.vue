@@ -24,7 +24,7 @@ export default {
 
       this.stats = this.stats.reverse();
 
-      this.stats = this.stats.reverse().slice(this.stats.length-30);
+      this.stats = this.stats.slice(this.stats.length-30);
 
       const dates = this.stats.map(d => {
         let date = new Date(d.last_update);
