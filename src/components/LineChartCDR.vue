@@ -22,6 +22,10 @@ export default {
           day: "numeric"
       };
 
+      if( this.stats.length && (this.stats[0].cases !== 0 && this.stats[0].deaths !== 0 && this.stats[0].recovered !== 0) ){
+        this.stats = this.stats.reverse();
+      }
+
       const dates = this.stats.map(d => {
         let date = new Date(d.last_update);
         return date.toLocaleDateString("pl-PL", dateOptions);

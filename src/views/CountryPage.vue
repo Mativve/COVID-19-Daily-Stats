@@ -144,16 +144,16 @@ export default {
       .then((data) => {
           const latest = data.find(el => (el.country === this.country.iso2));
 
-          this.current.cases = latest.cases;
-          this.current.new_cases = latest.new_cases;
+          this.current.cases = latest.cases ?? 0;
+          this.current.new_cases = latest.new_cases ?? 0;
 
-          this.current.deaths = latest.deaths;
-          this.current.new_deaths = latest.new_deaths;
+          this.current.deaths = latest.deaths ?? 0;
+          this.current.new_deaths = latest.new_deaths ?? 0;
 
-          this.current.recovered = latest.recovered;
-          this.current.new_recovered = latest.new_recovered;
+          this.current.recovered = latest.recovered ?? 0;
+          this.current.new_recovered = latest.new_recovered ?? 0;
 
-          this.last_update = latest.last_update;
+          this.last_update = latest.last_update ?? 0;
       })
       .then(() => {
         getCountryStats( this.country.iso2 ).then((data) => {
@@ -196,7 +196,7 @@ export default {
       });
     },
 
-    pickCountry(){
+    pickMapCountry(){
       const tmp = {};
       countries.forEach((a) => {
         const b = (a.iso2 === this.country.iso2) ? 1000 : 0;
@@ -245,7 +245,7 @@ export default {
       }
       
       this.getCountryData();
-      this.pickCountry();
+      this.pickMapCountry();
       
       this.detectLoading();
     },
@@ -263,7 +263,7 @@ export default {
       setTimeout(() => {
         if( this.loading === true ){
           this.getCountryData();
-          this.pickCountry();
+          this.pickMapCountry();
         }
       }, 5000);
     }
@@ -286,7 +286,7 @@ export default {
   },
   mounted(){
     this.getCountryData();
-    this.pickCountry();
+    this.pickMapCountry();
 
     this.detectLoading();
   }
