@@ -12,6 +12,12 @@
 
           <ul class="main-menu">
             <li><router-link to="/">Strona główna</router-link></li>
+            <li>
+              <button class="change-theme" @click="changeTheme">
+                <font-awesome-icon :icon="['fas', 'eye-slash']" v-if="theme === 'dark'"/>
+                <font-awesome-icon :icon="['fas', 'eye']" v-if="theme === 'light'"/>
+              </button>
+            </li>
           </ul>
         </div>
       </div>
@@ -26,6 +32,16 @@ export default {
   name: 'Header',
   components:{
     SearchBox
+  },
+  methods:{
+    changeTheme() {
+      this.$emit('changeTheme');
+    }
+  },
+  props:{
+    theme:{
+      type: String
+    }
   }
 }
 </script>
@@ -59,6 +75,27 @@ export default {
             color: $red;
           }
         }
+      }
+    }
+
+    .change-theme{
+      background-color: transparent;
+      border: none;
+      color: $muted;
+      cursor: pointer;
+
+      vertical-align: middle;
+      text-align: center;
+      
+      margin: 0 0 0 6px;
+      padding: 8px;
+      background-color: $bg;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+
+      &:hover, &:focus{
+        color: $green;
       }
     }
   }

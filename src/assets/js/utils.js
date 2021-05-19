@@ -133,6 +133,47 @@ function boldString(str, substr) {
     return str.replace(strRegExp, '<span class="highlight">'+substr+'</span>');
 }
 
+// Different theme
+function getTheme(){
+    const ls = localStorage;
+
+    if( !ls.getItem("theme") ){
+        setTheme("light");
+    }
+    
+    return ls.getItem("theme");
+}
+
+
+function applyTheme(){
+    const theme = getTheme();    
+    document.body.setAttribute("data-theme", theme);
+}
+
+function setTheme(theme){
+    const ls = localStorage;
+
+    if( theme !== "" ){
+        ls.setItem("theme", theme);    
+    }
+    else{
+        const c = getTheme();
+        if( c.length > 0 ){
+            if( c === "light" ){
+                ls.setItem("theme", "dark");
+            }
+            else if( c === "dark" ){
+                ls.setItem("theme", "light");
+            }
+        }
+        else{
+            ls.setItem("theme", "light");
+        }
+    }
+
+    applyTheme();
+}
+
 module.exports = {
     countries,
     numberWithSpaces,
@@ -143,5 +184,8 @@ module.exports = {
     parseDateToHuman,
     verticalLineChartjs,
     cropImage,
-    boldString
+    boldString,
+    getTheme,
+    setTheme,
+    applyTheme
 };

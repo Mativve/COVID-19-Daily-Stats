@@ -11,6 +11,10 @@ $orange: #e48c52;
 
 $font: 'Lato', sans-serif;
 
+// Dark
+$bg-dark: #111111; 
+$text-dark: #f2f3f8; 
+
 *{
     margin: 0;
     padding: 0;
@@ -22,6 +26,82 @@ body{
     font-family: $font;
     font-size: 16px;
     color: $text;
+
+    &[data-theme="dark"]{
+        background-color: $bg-dark;
+        color: $text-dark;
+
+        .box{
+            background-color: darken($bg-dark, 3%);
+            box-shadow: none;
+
+            &-item{
+                &-title{
+                    color: $text-dark;
+    
+                    p{
+                        &:after{
+                            box-shadow: inset -24px 0 15px darken($bg-dark, 3%);
+                        }
+                    }
+                }
+
+                &-link{
+                    background-color: darken($bg-dark, 3%);
+                }
+            }
+
+            &[data-loading]{
+                &:after{
+                    background-color: darken($bg-dark, 3%);
+                }
+            }
+        }
+
+        .input-control{
+            background-color: darken($bg-dark, 5%);
+            color: $text-dark;
+            box-shadow: none;
+        }
+
+        .search-box{
+            &:after{
+                background-color: transparentize(darken($bg-dark, 3%), 0.1);
+            }
+
+            &-list{
+                &-wrapper{
+                    background-color: darken($bg-dark, 5%);
+                }
+            }
+
+            &-item{
+                &-header{
+                    border-top: none;
+                    background-color: $bg-dark;
+                }
+
+                &-link{
+                    border-top-color: $bg-dark;
+
+                    &:hover, &:focus{
+                        background-color: $bg-dark;
+                    }
+                }
+            }
+        }
+
+        .allCountries{
+            &-arr{
+                background-color: $bg-dark;
+            }
+        }
+
+        .main-menu .change-theme,
+        .box .box-title .refresh{
+            background-color: $bg-dark;
+        }
+    }
 }
 
 .red{

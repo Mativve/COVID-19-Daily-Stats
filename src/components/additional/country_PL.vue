@@ -309,4 +309,26 @@ export default {
         }
     }
 }
+
+body[data-theme="dark"]{
+    .additional{
+        &-province{
+            .index, .regionName{
+                color: $text-dark;
+            }
+
+            &:first-child{
+                border-bottom-color: $bg-dark;
+            }
+
+            &:not(:first-child):hover{
+                background-color: $bg-dark;
+            }
+
+            & + .additional-province{
+                border-top-color: $bg-dark;
+            }
+        }
+    }
+}
 </style>
