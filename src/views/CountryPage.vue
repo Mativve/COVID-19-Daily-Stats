@@ -158,7 +158,7 @@ export default {
       .then(() => {
         getCountryStats( this.country.iso2 ).then((data) => {
             if( data ){
-              this.stats = data.reverse();
+              this.stats = data;
             }
             else{
               this.stats = [];
