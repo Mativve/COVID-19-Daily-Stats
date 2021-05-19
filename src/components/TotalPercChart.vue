@@ -6,7 +6,7 @@ export default {
   extends: Bar,
   props:{
     chartData:{
-        type:Array
+      type:Array
     }
   },
   data(){
@@ -125,10 +125,13 @@ export default {
       });
     }
   },
-  created(){
-    this.stats = this.chartData;
+  watch:{
+    chartData(){
+      this.render();
+    }
   },
   mounted(){
+    this.stats = this.chartData;
     this.render();
   }
 }

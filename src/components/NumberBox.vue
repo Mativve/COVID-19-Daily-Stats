@@ -24,7 +24,12 @@ export default {
     },
     computed: {
         spacedNumber: function() {
-            return numberWithSpaces( this.number.toFixed(0) );
+            if( this.number ){
+                return numberWithSpaces( this.number.toFixed(0) );
+            }
+            else{
+                return 0;
+            }
         }
     },
     watch: {

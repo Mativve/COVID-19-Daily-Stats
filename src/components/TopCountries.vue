@@ -1,7 +1,7 @@
 <template>
     <section class="section topCountries">
         <div class="container">
-            <div class="row mb-5">
+            <div class="row mb-4 mb-md-5">
                 <div class="col-12">
                     <h2 class="section-title">Najwięcej przypadków</h2>
 
@@ -13,7 +13,7 @@
                 </div>
             </div>
 
-            <div class="row mb-5">
+            <div class="row mb-4 mb-md-5">
                 <div class="col-12">
                     <h2 class="section-title">Najwięcej dziennych przypadków</h2>
 
@@ -25,7 +25,7 @@
                 </div>
             </div>
             
-            <div class="row mb-5">
+            <div class="row mb-4 mb-md-5">
                 <div class="col-12">
                     <h2 class="section-title">Najmniej przypadków</h2>
 
@@ -37,7 +37,7 @@
                 </div>
             </div>
 
-            <div class="row mb-5">
+            <div class="row mb-4 mb-md-5">
                 <div class="col-12">
                     <h2 class="section-title">Najmniej dziennych przypadków</h2>
 
@@ -138,6 +138,14 @@ export default {
         counter-reset: country-step;
 
         &.small{
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        @media all and (max-width:1024px){
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media all and (max-width:648px){
             grid-template-columns: repeat(1, 1fr);
         }
     }

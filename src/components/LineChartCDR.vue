@@ -21,15 +21,11 @@ export default {
         let date = new Date(d.last_update);
         return date.toLocaleDateString("pl-PL", dateOptions);
       }).reverse();
-
-      console.log("D", this.chartData);
+      
       const cases = this.chartData.map(c => c.cases).reverse();
       const deaths = this.chartData.map(d => d.deaths).reverse();
       const recovered = this.chartData.map(r => r.recovered).reverse();
       const vaccined = this.chartData.map(v => (v.vaccine) ? v.vaccine : 0).reverse();
-
-      console.log("R", recovered);
-      console.log("V", vaccined);
 
       this.renderChart({
         labels: dates,
@@ -92,19 +88,15 @@ export default {
             display: true,
             stacked: true,
             ticks: {
-              maxRotation: 20,
-              minRotation: 10,
+              maxRotation: 30,
+              minRotation: 25,
               padding: 5,
               autoSkip: true,
               fontSize: 10
             }
           }],
           yAxes: [{
-            display: true,
-            ticks: {
-              min: 0
-            },
-            stacked: false
+            display: false
           }]
         }
       });

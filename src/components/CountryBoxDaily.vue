@@ -181,5 +181,22 @@ export default {
             }
         }
     }
+
+    @media screen and (max-width:640px){
+        padding-bottom: 44px !important;
+
+        &:after{
+            content: 'Więcej informacji';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 8px;
+            text-align: center;
+            color: $green;
+            font-weight: 600;
+            border-top: 1px solid $bg;
+        }
+    }
 }
 </style>

@@ -110,7 +110,6 @@ export default {
     created(){
         window.addEventListener('keydown', (e) => {
             if( this.is_opened && ( (e.key.length === 1 && (/[a-zA-Z0-9-_ ]{0,1}$/.test(e.key))) || e.key === "Backspace" ) ){
-                console.log(this.$refs);
                 this.$refs.searchbox.focus();
             }
         });
@@ -125,6 +124,12 @@ export default {
     $this: &;
     position: relative;
     width: 40%;
+
+    @media screen and (max-width:640px){
+        width: 100%;
+        order: 1;
+        margin-top: 16px;
+    }
 
     &:after{
         content: '';

@@ -15,6 +15,7 @@ export default defineComponent({
       stats: []
     }
   },
+
   methods:{
     render(){
       const dateOptions = {
@@ -81,11 +82,6 @@ export default defineComponent({
           return 0;
         }
       });
-
-      // console.table(diffs);
-      // console.table(cases_perc);
-      // console.table(deaths_perc);
-      // console.table(recovered_perc);
 
       this.renderChart({
         labels: dates,
@@ -165,9 +161,13 @@ export default defineComponent({
       });
     }
   },
-  mounted () {
+  watch:{
+    chartData(){
+      this.render();
+    }
+  },
+  mounted(){
     this.stats = this.chartData;
-
     this.render();
   }
 })

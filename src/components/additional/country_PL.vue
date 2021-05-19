@@ -58,14 +58,14 @@
                 </button>
             </li>
             <li class="additional-province" v-for="(items, index) in response.infectedByRegion" :key="index">
-                <span class="index"><span>{{ (index++) }}</span></span>
-                <span class="regionName"><span>{{ items.region }}</span></span>
-                <span class="infectedCount"><span>{{ items.infectedCount }}</span></span>
-                <span class="deceasedCount"><span>{{ items.deceasedCount }}</span></span>
-                <span class="recoveredCount"><span>{{ items.recoveredCount }}</span></span>
-                <span class="testedCount"><span>{{ items.testedCount }}</span></span>
-                <span class="testedNegative"><span>{{ items.testedNegative }}</span></span>
-                <span class="testedPositive"><span>{{ items.testedPositive }}</span></span>
+                <span class="index" data-tab="#"><span>{{ (index++) }}</span></span>
+                <span class="regionName" :data-tab=" 'Województwo' "><span>{{ items.region }}</span></span>
+                <span class="infectedCount" :data-tab=" 'Przypadki' "><span>{{ items.infectedCount }}</span></span>
+                <span class="deceasedCount" :data-tab=" 'Zgony' "><span>{{ items.deceasedCount }}</span></span>
+                <span class="recoveredCount" :data-tab=" 'Ozdrowienia' "><span>{{ items.recoveredCount }}</span></span>
+                <span class="testedCount" :data-tab=" 'Testów' "><span>{{ items.testedCount }}</span></span>
+                <span class="testedNegative" :data-tab=" 'Testy negatywne' "><span>{{ items.testedNegative }}</span></span>
+                <span class="testedPositive" :data-tab=" 'Testy pozytywne' "><span>{{ items.testedPositive }}</span></span>
             </li>
         </ul>
     </div>
@@ -124,7 +124,7 @@ export default {
     }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .additional{
     &-header{
         display: flex;
@@ -136,6 +136,15 @@ export default {
         span{
             margin-left: auto;
         }
+
+        @media screen and (max-width:640px){
+            flex-direction: column;
+            justify-content: center;
+
+            span{
+                margin: 0;
+            }
+        }
     }
 
     &-grid{
@@ -143,18 +152,23 @@ export default {
         grid-template-columns: repeat(4, 1fr);
         grid-auto-rows: auto;
         gap: 16px;
+
+        @media screen and (max-width:1024px){
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media screen and (max-width:640px){
+            grid-template-columns: repeat(1, 1fr);
+        }
     }
 
     &-list-of-provinces{
-        // padding: 24px 16px;
-        // background-color: #FFFFFF;
-        // color: #191b1a;
-        // position: relative;
-        // overflow: hidden;
-        // box-shadow: 0 2px 4px 0 rgba(83, 86, 92, 0.06);
-        // border-radius: 5px;
-
         list-style: none;
+
+        @media screen and (max-width:1024px){
+            overflow: hidden;
+            overflow-x: auto;
+        }
     }
 
     &-province{
@@ -213,6 +227,28 @@ export default {
                         display: block;
                     }
                 }
+
+                &.index{
+                    padding: 0;
+                }
+            }
+
+            @media screen and (max-width: 640px){
+                display: flex;
+                flex-wrap: wrap;
+
+                button{
+                    padding: 4px;
+
+                    &:first-child{
+                        display: none;
+                    }
+
+                    &.active{
+                        width: 100%;
+                        order: -1;
+                    }
+                }
             }
         }
 
@@ -220,12 +256,28 @@ export default {
             border-top: 1px solid $bg;
         }
 
-        &:not(:first-child):hover{
-            background-color: $bg;
+        &:not(:first-child){
+            &:hover{
+                background-color: $bg;
+            }
         }
 
         span{
+            position: relative;
             text-align: center;
+
+
+            @media screen and (max-width: 640px){
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 4px;
+
+                &:before{
+                    content: attr(data-tab)
+                }
+            }
         }
 
         .regionName{
@@ -234,47 +286,26 @@ export default {
 
         .infectedCount{
             color: $blue;
-
-            span{
-                font-weight: 600;
-            }
+            font-weight: 600;
          }
 
         .deceasedCount{
             color: $red;
-
-            span{
-                font-weight: 600;
-            }
+            font-weight: 600;
          }
 
         .recoveredCount{
             color: $green;
-
-            span{
-                font-weight: 600;
-            }
+            font-weight: 600;
          }
 
-        .testedCount{
-            span{
-                font-weight: 600;
-                color: $muted;
-            }
+        .testedCount, .testedNegative, .testedPositive{
+            color: $muted;
+            font-weight: 600;
         }
 
-        .testedNegative{
-            span{
-                font-weight: 600;
-                color: $muted;
-            }
-        }
-
-        .testedPositive{
-            span{
-                font-weight: 600;
-                color: $muted;
-            }
+        @media screen and (max-width:1024px){
+            grid-template-columns: 1fr;
         }
     }
 }

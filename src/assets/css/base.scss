@@ -72,6 +72,14 @@ body{
             justify-content: flex-end;
             list-style: none;
         }
+
+        @media screen and (max-width:640px){
+            flex-wrap: wrap;
+
+            .logo, .main-menu{
+                width: 50%;
+            }
+        }
     }
 }
 
@@ -108,6 +116,10 @@ body{
         &::after{
             margin-left: 16px;
         }
+    }
+
+    @media screen and (max-width:640px){
+        padding: 0 0;
     }
 }
 

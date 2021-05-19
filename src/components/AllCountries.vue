@@ -17,9 +17,9 @@
             </div>
             <div class="row allCountries-footer">
                 <div class="col-12">
-                    <p><button class="allCountries-arr allCountries-bottom allCountries-prev" @click="prevPage()" v-if="(page > 1)">&lt; Poprzednia</button></p>
-                    <p><small>(Strona {{ page + " z " + max_page }})</small></p>
-                    <p><button class="allCountries-arr allCountries-bottom allCountries-next" @click="nextPage()" v-if="(page < max_page)">Następna &gt;</button></p>
+                    <div><button class="allCountries-arr allCountries-bottom allCountries-prev" @click="prevPage()" v-if="(page > 1)">&lt; Poprzednia</button></div>
+                    <div><small>(Strona {{ page + " z " + max_page }})</small></div>
+                    <div><button class="allCountries-arr allCountries-bottom allCountries-next" @click="nextPage()" v-if="(page < max_page)">Następna &gt;</button></div>
                 </div>
             </div>
         </div>
@@ -83,6 +83,14 @@ export default {
         gap: 16px;
 
         &.small{
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        @media all and (max-width:1024px){
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media all and (max-width:648px){
             grid-template-columns: repeat(1, 1fr);
         }
     }
@@ -173,7 +181,7 @@ export default {
             align-items: center;
             justify-content: center;
 
-            p{
+            div{
                 text-align: center;
                 font-weight: 600;
                 width: 33.33%;
@@ -184,6 +192,23 @@ export default {
 
                 &:last-child{
                     text-align: right;
+                }
+            }
+
+            @media screen and (max-width:640px){
+                flex-wrap: wrap;
+
+                div{
+                    width: 50%;
+
+                    button{
+                        width: 100%;
+                    }
+
+                    &:nth-child(2){
+                        order: -1;
+                        width: 100%;
+                    }
                 }
             }
         }
@@ -208,6 +233,12 @@ export default {
 
         &:hover, &:focus{
             color: $red;
+        }
+
+        @media screen and (max-width:640px){
+            position: relative;
+            top: 0;
+            width: 50%;
         }
     }
 

@@ -7,13 +7,13 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12 col-md-4">
+                <div class="col-md-12 col-lg-4 mb-3">
                     <NumberBox title="Przypadki" :subtitle="'(+'+ global.new_cases +')' " customClass="blue" :counter="global.cases"/>
                 </div>
-                <div class="col-sm-12 col-md-4">
+                <div class="col-md-12 col-lg-4 mb-3">
                     <NumberBox title="Zgony" :subtitle="'(+'+ global.new_deaths +')' " customClass="red" :counter="global.deaths"/>
                 </div>
-                <div class="col-sm-12 col-md-4">
+                <div class="col-md-12 col-lg-4 mb-3">
                     <NumberBox title="Ozdrowienia" :subtitle="'(+'+ global.new_recovered +')' " customClass="green" :counter="global.recovered"/>
                 </div>
             </div>

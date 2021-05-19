@@ -166,9 +166,8 @@ export default {
         });
       }).then(() => {
         getCountryVaccine( this.country.iso2 ).then((data) => {
-          if( this.stats.length === 0 ) return false;
+          if( !this.stats || Object.keys(this.stats).length === 0 ) return false;
 
-          console.log(this.stats);
           const dates = this.stats.map(d => {
             return d.last_update;
           });
@@ -247,6 +246,8 @@ export default {
       
       this.getCountryData();
       this.pickCountry();
+      
+      this.detectLoading();
     },
 
     refresh(id){
@@ -256,6 +257,15 @@ export default {
         this.initialize(id);
         this.$refs.refresh_button.blur();
         }, 1000);
+    },
+
+    detectLoading(){
+      setTimeout(() => {
+        if( this.loading === true ){
+          this.getCountryData();
+          this.pickCountry();
+        }
+      }, 5000);
     }
   },
   beforeRouteEnter (to, from, next) {
@@ -278,12 +288,7 @@ export default {
     this.getCountryData();
     this.pickCountry();
 
-    setTimeout(() => {
-      if( this.loading === true ){
-        this.getCountryData();
-        this.pickCountry();
-      }
-    }, 5000);
+    this.detectLoading();
   }
 }
 </script>
@@ -306,6 +311,22 @@ export default {
       "chart chart chart chart map map"
       "total-perc total-perc total-perc daily-perc daily-perc daily-perc"
       "additional additional additional additional additional additional";
+
+    @media all and (max-width:1024px){
+    grid-template-areas:
+      "header header header header header header"
+      "daily-cases daily-cases daily-cases daily-cases daily-cases daily-cases"
+      "daily-deaths daily-deaths daily-deaths daily-deaths daily-deaths daily-deaths"
+      "daily-recovered daily-recovered daily-recovered daily-recovered daily-recovered daily-recovered"
+      "total-cases total-cases total-cases total-cases total-cases total-cases"
+      "total-deaths total-deaths total-deaths total-deaths total-deaths total-deaths"
+      "total-recovered total-recovered total-recovered total-recovered total-recovered total-recovered"
+      "chart chart chart chart chart chart"
+      "map map map map map map"
+      "total-perc total-perc total-perc total-perc total-perc total-perc"
+      "daily-perc daily-perc daily-perc daily-perc daily-perc daily-perc"
+      "additional additional additional additional additional additional";
+    }
   }
 
   &-header {
@@ -333,6 +354,31 @@ export default {
         
         span{
           display: block;
+        }
+      }
+
+      @media screen and (max-width:640px){
+        text-align: center;
+        justify-content: center;
+        flex-direction: column;
+        flex-wrap: wrap;
+
+        .flag{
+          transform-origin: center;
+          margin-bottom: 8px;
+        }
+
+        h2, span{
+          margin: 0;
+        }
+
+        span{
+          margin-top: 6px;
+          flex-direction: column;
+
+          .refresh{
+            margin: 6px 0 0 0;
+          }
         }
       }
     }
@@ -376,7 +422,20 @@ export default {
   &-total-deaths { grid-area: total-deaths; }
   &-total-recovered { grid-area: total-recovered; }
   &-chart { grid-area: chart; }
-  &-map { grid-area: map; }
+  &-map {
+    grid-area: map;
+    position: relative;
+
+    &:after{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+  }
   &-total-perc { grid-area: total-perc; }
   &-daily-perc { grid-area: daily-perc; }
   &-additional { grid-area: additional; }
