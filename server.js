@@ -9,8 +9,4 @@ app.use(enforce.HTTPS({ trustProtoHeader: true }));
 app.use(serveStatic(__dirname + '/dist'));
 app.use(history());
 
-app.get('*', (request, response) => {
-	response.sendFile(path.join(__dirname, '/dist', 'index.html'));
-});
-
 app.listen(process.env.PORT || 5000);
