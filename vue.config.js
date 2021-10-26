@@ -1,4 +1,9 @@
 module.exports = {
+    configureWebpack: {
+        devServer: {
+            historyApiFallback: true
+        }
+    },
     css: {
         loaderOptions: {
             sass: {
